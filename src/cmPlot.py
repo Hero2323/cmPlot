@@ -1,6 +1,6 @@
 from matplotlib.pyplot import plot, show
 import PySimpleGUI as sg
-import utils
+from .utils import *
 
 sg.theme('Dark Blue 3')   # Add a touch of color
 
@@ -15,7 +15,7 @@ layout = [[sg.Text('Function'), sg.InputText(key='-FUNC-')],
 
 
 # Create the Window
-window = sg.Window('cmPlot', layout, resizable=True, finalize=True)
+window = sg.Window('cmPlot', layout, finalize=True)
 
 # Close the window when the escape key is pressed
 window.bind('<Escape>', '-ESC-')
@@ -28,12 +28,12 @@ while True:
     if event in (sg.WIN_CLOSED, 'Cancel', '-ESC-'):  # if user closes window or clicks cancel
         break
     elif event == 'Plot':
-        success, output = utils.get_x_y_vals(values['-FUNC-'], values['-MIN-'], values['-MAX-'])
+        success, output = get_x_y_vals(values['-FUNC-'], values['-MIN-'], values['-MAX-'])
         if success == True:
             plot(output[0], output[1])
             show(block=True)
         else:
-            sg.popup(utils.getErrorMsg(output), title='Error', keep_on_top=True)
+            sg.popup(output, title='Error', keep_on_top=True)
 
 window.close()
 
