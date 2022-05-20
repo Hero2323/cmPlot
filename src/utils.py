@@ -120,10 +120,12 @@ def isMinLargerThanMax(minVal, maxVal):
         the input of the maximum value field
 
     """
-
-    if float(minVal) >= float(maxVal):
-        return errors.MIN_BIGGER_THAN_MAX
-    return errors.SUCCESS
+    try:
+        if float(minVal) >= float(maxVal):
+            return errors.MIN_BIGGER_THAN_MAX
+        return errors.SUCCESS
+    except:
+        return errors.MIN_BIGGER_THAN_MAX # Placeholder, this doesn't matter
 
 # def isInvalidNumberCalc(function_input, minVal, maxVal):
 #     warnings.filterwarnings("error")
@@ -167,6 +169,12 @@ def verifyInput(function_input, minVal, maxVal):
     maxVal : str
         the input of the maximum value field
 
+    Returns
+    -------
+    enum
+        errors.SUCCESS if there are no errors in the function input
+    str
+        the error message to be displayed to the user if there are errors in the function input
     """
 
     errorCodes = [
@@ -181,7 +189,7 @@ def verifyInput(function_input, minVal, maxVal):
         if errorCode != errors.SUCCESS:
             return getErrorMsg(errorCode)
 
-    return True
+    return errors.SUCCESS
 
 
 def get_x_y_vals(function_input, minVal, maxVal):
@@ -219,7 +227,7 @@ def get_x_y_vals(function_input, minVal, maxVal):
 
     validInput = verifyInput(function_input, minVal, maxVal)
     
-    if not validInput:
+    if validInput != errors.SUCCESS:
         return False, validInput 
     
     x = sp.Symbol('x')
@@ -249,4 +257,4 @@ def get_x_y_vals(function_input, minVal, maxVal):
     
     
 
-    return validInput, (axis, expr)
+    return True, (axis, expr)

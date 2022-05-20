@@ -40,7 +40,7 @@ def getErrorMsg(enumVal):
         errors.INVALID_FUNC_EXPRESSION: 'Invalid Function Expression, please make sure that the expression is written correctly and that there is an operator between every two numbers/variables',
         errors.INVALID_MIN_VAL: 'Invalid Minimum Value, this field only accepts integers or floating decimals',
         errors.INVALID_MAX_VAL: 'Invalid Maximum Value, this field only accepts integers or floating decimals',
-        errors.MIN_BIGGER_THAN_MAX: 'he minimum value can\'t be bigger than the maximum value',
+        errors.MIN_BIGGER_THAN_MAX: 'the minimum value can\'t be bigger than the maximum value',
         errors.ALL_NAN: 'Invalid input, all inputs are division by zero, which can\'t be drawn',
         errors.SUCCESS: 'Success!',
     }
